@@ -1,0 +1,12 @@
+2026-06-02T14:00:52 | INFO     | === MLOps Pipeline started ===
+2026-06-02T14:00:52 | INFO     | Loading config from: config.yaml
+2026-06-02T14:00:52 | INFO     | Config validated – version=v1 | seed=42 | window=20 | data_path=data.csv
+2026-06-02T14:00:52 | INFO     | Loading data from: data.csv
+2026-06-02T14:00:52 | INFO     | Loaded 10000 rows, 6 columns
+2026-06-02T14:00:52 | INFO     | Computing rolling mean (window=20) on 10000 rows
+2026-06-02T14:00:52 | DEBUG    | Warm-up rows (NaN rolling_mean, excluded from signal): 19
+2026-06-02T14:00:52 | INFO     | Signal generation complete
+2026-06-02T14:00:52 | DEBUG    | Signal distribution – 1s: 4954 | 0s: 5027 | warm-up (forced 0): 19
+2026-06-02T14:00:52 | INFO     | Metrics – rows_processed=10000 | signal_rate=0.4963 | latency_ms=51
+2026-06-02T14:00:52 | INFO     | metrics.json written to: metrics.json
+2026-06-02T14:00:52 | INFO     | === Pipeline finished successfully ===
