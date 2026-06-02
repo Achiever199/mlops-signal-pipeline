@@ -1,8 +1,12 @@
 """
 MLOps Signal Pipeline
 ---------------------
-Reads OHLCV data, computes a rolling-mean crossover signal,
-writes metrics.json and run.log, then prints metrics to stdout.
+
+Generates trading signals using a rolling mean over time-series data.
+
+Note: The first (window - 1) rows are excluded from signal_rate
+calculation because a rolling mean requires a complete window
+before producing valid values.
 """
 
 import json
