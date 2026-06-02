@@ -1,5 +1,5 @@
 version: "v1"
 seed: 42
-window: 20
+window: 5
 data_path: "data.csv"
 output_dir: "."
