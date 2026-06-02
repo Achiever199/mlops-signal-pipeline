@@ -9,6 +9,7 @@ calculation because a rolling mean requires a complete window
 before producing valid values.
 """
 
+import argparse
 import json
 import logging
 import os
@@ -211,8 +212,16 @@ def write_metrics(metrics: dict, output_dir: str, logger: logging.Logger) -> Non
 
 def main() -> int:
     start_time = time.time()
-    log_path = os.environ.get("LOG_PATH", "run.log")
-    config_path = os.environ.get("CONFIG_PATH", "config.yaml")
+    parser = argparse.ArgumentParser(description="MLOps Signal Pipeline")
+
+    parser.add_argument("--input", help="Input CSV file")
+    parser.add_argument("--config", help="Config YAML file")
+    parser.add_argument("--output", help="Metrics output JSON file")
+    parser.add_argument("--log-file", help="Log file path")
+
+    args = parser.parse_args()
+    log_path = args.log_file or os.environ.get("LOG_PATH", "run.log")
+    config_path = args.config or os.environ.get("CONFIG_PATH", "config.yaml")
     output_dir = os.environ.get("OUTPUT_DIR", ".")
 
     logger = setup_logging(log_path)
@@ -226,7 +235,7 @@ def main() -> int:
         version = cfg["version"]
         seed = cfg["seed"]
         window = cfg["window"]
-        data_path = cfg["data_path"]
+        data_path = args.input or cfg["data_path"]
         output_dir = cfg.get("output_dir", output_dir)
 
         # 2. Load data
