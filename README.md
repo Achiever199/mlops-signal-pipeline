@@ -33,7 +33,7 @@ pip install -r requirements.txt
 ### Run the pipeline
 
 ```bash
-python run.py
+python run.py --input data.csv --config config.yaml --output metrics.json --log-file run.log
 ```
 
 The script reads `config.yaml` from the current directory by default.  
@@ -69,7 +69,7 @@ docker run --rm -v $(pwd)/output:/app mlops-task
 ```yaml
 version: "v1"    # Pipeline version string; appears in metrics.json
 seed: 42         # Random seed for full reproducibility
-window: 20       # Rolling mean window size (integer >= 2)
+window: 5      # Rolling mean window size (integer >= 2)
 data_path: "data.csv"   # Path to input CSV (relative or absolute)
 output_dir: "."  # Directory where metrics.json is written
 ```
